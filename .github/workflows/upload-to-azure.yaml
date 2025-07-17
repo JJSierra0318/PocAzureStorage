@@ -10,9 +10,6 @@ jobs:
       - name: Create sample.txt
         run: echo "." > sample.txt
 
-      - name: Install Azure CLI
-        uses: azure/setup-azurecli@v1
-
       - name: Upload to Azure Blob Storage
         env:
           AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
