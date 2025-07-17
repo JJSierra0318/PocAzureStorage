@@ -21,6 +21,6 @@ jobs:
           az storage blob upload \
             --account-name $AZURE_STORAGE_ACCOUNT \
             --account-key $AZURE_STORAGE_KEY \
-            --container-name mycontainer \
+            --container-name artifacts \
             --name sample.txt \
             --file sample.txt
