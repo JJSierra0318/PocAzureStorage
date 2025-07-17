@@ -1,0 +1,26 @@
+name: Upload Artifact to Azure Storage
+
+on:
+  workflow_dispatch:
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create sample.txt
+        run: echo "." > sample.txt
+
+      - name: Install Azure CLI
+        uses: azure/setup-azurecli@v1
+
+      - name: Upload to Azure Blob Storage
+        env:
+          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
+          AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
+        run: |
+          az storage blob upload \
+            --account-name $AZURE_STORAGE_ACCOUNT \
+            --account-key $AZURE_STORAGE_KEY \
+            --container-name mycontainer \
+            --name sample.txt \
+            --file sample.txt
